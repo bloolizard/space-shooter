@@ -9,6 +9,7 @@ TagManager:
   - TripleShot
   - PowerUpContainer
   - SpeedPowerUp
+  - ShieldPowerUp
   layers:
   - Default
   - TransparentFX

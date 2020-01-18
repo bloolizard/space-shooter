@@ -25,6 +25,9 @@ public class Player : MonoBehaviour
     private bool _isSpeedBoostActive = false;
 
     [SerializeField]
+    private bool _isShieldActive = false;
+
+    [SerializeField]
     private int _lives = 3;
 
     private SpawnManager _spawnManager;
@@ -112,6 +115,12 @@ public class Player : MonoBehaviour
         StartCoroutine(SpeedBoostPowerDownRoutine());
     }
 
+    public void ShieldActive()
+    {
+        _isShieldActive = true;
+        StartCoroutine(ShieldPowerDownRoutine());
+    }
+
     IEnumerator TripleShotPowerDownRoutine()
     {
         yield return new WaitForSeconds(5.0f);
@@ -122,5 +131,11 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(5.0f);
         _isSpeedBoostActive = false;
+    }
+
+    IEnumerator ShieldPowerDownRoutine()
+    {
+        yield return new WaitForSeconds(5.0f);
+        _isShieldActive = false;
     }
 }
