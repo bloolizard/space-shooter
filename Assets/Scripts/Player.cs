@@ -32,6 +32,12 @@ public class Player : MonoBehaviour
 
     private SpawnManager _spawnManager;
 
+    [SerializeField]
+    private GameObject _shield;
+
+    //variable reference to the shield visualizer
+
+
     void Start()
     {
         transform.position = new Vector3(0,0,0);
@@ -60,7 +66,7 @@ public class Player : MonoBehaviour
         Vector3 direction = new Vector3(horizontalInput, verticalInput, 0);
         if (_isSpeedBoostActive)
         {
-            transform.Translate(direction * 20f * Time.deltaTime);
+            transform.Translate(direction * 2 * _speed * Time.deltaTime);
         }
         else
         {
@@ -95,6 +101,13 @@ public class Player : MonoBehaviour
 
     public void Damage()
     {
+        if (_isShieldActive)
+        {
+            _isShieldActive = false;
+            _shield.SetActive(false);
+            return;
+        }
+
         _lives -= 1;
         if (_lives < 1)
         {
@@ -118,7 +131,7 @@ public class Player : MonoBehaviour
     public void ShieldActive()
     {
         _isShieldActive = true;
-        StartCoroutine(ShieldPowerDownRoutine());
+        _shield.SetActive(true);
     }
 
     IEnumerator TripleShotPowerDownRoutine()
@@ -131,11 +144,5 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(5.0f);
         _isSpeedBoostActive = false;
-    }
-
-    IEnumerator ShieldPowerDownRoutine()
-    {
-        yield return new WaitForSeconds(5.0f);
-        _isShieldActive = false;
     }
 }

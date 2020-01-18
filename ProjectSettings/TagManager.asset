@@ -10,6 +10,7 @@ TagManager:
   - PowerUpContainer
   - SpeedPowerUp
   - ShieldPowerUp
+  - Shield
   layers:
   - Default
   - TransparentFX
