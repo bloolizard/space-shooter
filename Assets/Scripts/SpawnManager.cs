@@ -37,7 +37,7 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator SpawnPowerUpRoutine()
     {
-        while (true)
+        while (_stopSpawning == false)
         {
             Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
             GameObject newPowerUp = Instantiate(_powerUpPrefab, posToSpawn, Quaternion.identity);

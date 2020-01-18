@@ -8,6 +8,7 @@ TagManager:
   - Laser
   - TripleShot
   - PowerUpContainer
+  - SpeedPowerUp
   layers:
   - Default
   - TransparentFX
@@ -44,4 +45,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Foreground
+    uniqueID: 2766820383
     locked: 0

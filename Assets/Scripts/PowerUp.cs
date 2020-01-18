@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
-    // Update is called once per frame
+    [SerializeField]
+    private float _speed = 3.0f;
+
+    // 0 = Triple Shot, 1 = Speed, 2 = Shields
+    [SerializeField]
+    private int powerUpId;
+
     void Update()
     {
-        //move down at a speed of 3 (adjust in the inspector)
-        // when we leave the screen, destroy this object
         {
-            transform.Translate(Vector3.down * 3f * Time.deltaTime);
+            transform.Translate(Vector3.down * _speed * Time.deltaTime);
 
             if (transform.position.y < -5.3f)
             {
@@ -27,8 +31,22 @@ public class PowerUp : MonoBehaviour
             Player player = other.GetComponent<Player>();
             if (player != null)
             {
-                player.TripleShotActive();
+                switch (powerUpId)
+                {
+                    case 0:
+                        player.TripleShotActive();
+                        break;
+                    case 1:
+                        player.SpeedBoostActive();
+                        break;
+                    case 2:
+                        Debug.Log("Collected Shields");
+                        break;
+                    default:
+                        break;
+                }
             }
+            
             Destroy(gameObject);
         }
 
