@@ -30,12 +30,15 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int _lives = 3;
 
+    private UIManager _uiManager;
+
     private SpawnManager _spawnManager;
 
     [SerializeField]
     private GameObject _shield;
 
-    //variable reference to the shield visualizer
+    [SerializeField]
+    private int _score;
 
 
     void Start()
@@ -45,6 +48,12 @@ public class Player : MonoBehaviour
         if (_spawnManager == null)
         {
             Debug.Log("WARNING: the Spawn_Manager is NULL");
+        }
+
+        _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        if (_uiManager == null)
+        {
+            Debug.Log("WARNING: the UI_Manager is NULL");
         }
     }
 
@@ -144,5 +153,15 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(5.0f);
         _isSpeedBoostActive = false;
+    }
+
+    public void AddScore(int points)
+    {
+        _score += points;
+    }
+
+    public int GetScore()
+    {
+        return _score;
     }
 }
