@@ -118,9 +118,13 @@ public class Player : MonoBehaviour
         }
 
         _lives -= 1;
+
+        _uiManager.UpdateLives(_lives);
+
         if (_lives < 1)
         {
             _spawnManager.OnPlayerDeath();
+            _uiManager.GameOver();
             Destroy(gameObject);
         }
     }
@@ -158,6 +162,7 @@ public class Player : MonoBehaviour
     public void AddScore(int points)
     {
         _score += points;
+        _uiManager.UpdateScore(_score);
     }
 
     public int GetScore()
